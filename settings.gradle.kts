@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Lobo Clips AI"
+rootProject.name = "Taviqo"
 
 include(":app")

@@ -65,6 +65,7 @@ import com.example.model.Clip
 import com.example.model.GiftCatalogItem
 import com.example.model.UserProfile
 import com.example.ui.components.SendGiftBottomSheet
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.theme.CoinGold
 import com.example.ui.theme.DeepBlack
 import com.example.ui.theme.LiveCrimson
@@ -129,9 +130,12 @@ fun ProfileScreen(
                         IconButton(onClick = onBack, modifier = Modifier.size(48.dp)) {
                             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver", tint = TextPrimary)
                         }
+                    } else {
+                        TaviqoLogoMark(size = 28.dp)
+                        Spacer(modifier = Modifier.width(8.dp))
                     }
                     Text(
-                        text = if (isOwnProfile) "Mi Perfil" else "@${profile?.username ?: ""}",
+                        text = if (isOwnProfile) "Mi Perfil • TAVIQO" else "@${profile?.username ?: ""}",
                         style = MaterialTheme.typography.headlineMedium,
                         color = TextPrimary
                     )

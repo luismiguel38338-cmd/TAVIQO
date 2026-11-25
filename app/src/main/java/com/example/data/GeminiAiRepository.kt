@@ -24,7 +24,7 @@ class GeminiAiRepository {
             modelName = "gemini-3.8-flash",
             systemInstruction = content {
                 text(
-                    "Eres el asistente técnico y de creadores de Lobo Clips AI. " +
+                    "Eres el asistente técnico y de creadores de TAVIQO (El mundo es tu escenario). " +
                         "Ayudas a los usuarios reales con ideas de guiones, descripciones, hashtags, " +
                         "buenas prácticas de transmisiones en vivo, tienda de regalos y normas de seguridad. " +
                         "REGLA ESTRICTA: Nunca inventes usuarios, seguidores, comentarios, métricas ni interacciones falsas. " +
@@ -75,7 +75,7 @@ class GeminiAiRepository {
         return try {
             val response = withTimeout(45_000L) {
                 moderationModel.generateContent(
-                    "Evalúa la seguridad PG-13 de este contenido publicado por un usuario en Lobo Clips AI " +
+                    "Evalúa la seguridad PG-13 de este contenido publicado por un usuario en TAVIQO " +
                         "(detecta odio, acoso, violencia explícita, estafas, contenido adulto o spam): \"$textToEvaluate\""
                 )
             }
@@ -101,7 +101,7 @@ class GeminiAiRepository {
         return try {
             val response = withTimeout(45_000L) {
                 creatorSuggestionModel.generateContent(
-                    "Crea una descripción atractiva y hashtags relevantes para un vídeo vertical corto en Lobo Clips AI sobre: \"$topic\""
+                    "Crea una descripción atractiva y hashtags relevantes para un vídeo vertical corto en TAVIQO sobre: \"$topic\""
                 )
             }
             val raw = response.text ?: throw IllegalStateException("Gemini devolvió una respuesta vacía.")

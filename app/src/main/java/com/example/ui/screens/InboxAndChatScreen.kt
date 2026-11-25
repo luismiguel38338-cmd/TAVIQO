@@ -65,6 +65,7 @@ import com.example.model.Conversation
 import com.example.model.DirectMessage
 import com.example.model.UserNotification
 import com.example.model.UserProfile
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.theme.DeepBlack
 import com.example.ui.theme.EmeraldSuccess
 import com.example.ui.theme.LiveCrimson
@@ -125,7 +126,11 @@ fun InboxAndChatScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Bandeja y Mensajes", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    TaviqoLogoMark(size = 30.dp)
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text("Mensajes TAVIQO", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+                }
                 IconButton(
                     onClick = { showNewChatDialog = true },
                     modifier = Modifier

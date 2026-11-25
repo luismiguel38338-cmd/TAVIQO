@@ -63,6 +63,7 @@ import com.example.model.GiftCatalogItem
 import com.example.model.LiveChatMessage
 import com.example.model.LiveStream
 import com.example.ui.components.SendGiftBottomSheet
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.components.VideoPlayerBox
 import com.example.ui.theme.CoinGold
 import com.example.ui.theme.DeepBlack
@@ -139,13 +140,17 @@ fun LiveStreamsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column {
-                    Text("En Vivo", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
-                    Text(
-                        "Transmisiones reales con chat y regalos instantáneos",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = TextSecondary
-                    )
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
+                    TaviqoLogoMark(size = 32.dp)
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column {
+                        Text("Directos TAVIQO", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+                        Text(
+                            "Escenario en vivo con chat y regalos",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = TextSecondary
+                        )
+                    }
                 }
                 Button(
                     onClick = { showCreateDialog = true },
@@ -182,8 +187,8 @@ fun LiveStreamsScreen(
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.img_live_stage),
-                                    contentDescription = "Escenario en vivo",
+                                    painter = painterResource(id = R.drawable.img_taviqo_live),
+                                    contentDescription = "Escenario en vivo TAVIQO",
                                     contentScale = ContentScale.Crop,
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -304,7 +309,7 @@ private fun LiveRoomView(
             .background(DeepBlack)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.img_live_stage),
+            painter = painterResource(id = R.drawable.img_taviqo_live),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()

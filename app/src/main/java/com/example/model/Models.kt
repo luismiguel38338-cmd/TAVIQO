@@ -267,7 +267,7 @@ data class AiCreatorSuggestion(
     val hashtags: List<String>
 )
 
-object LoboCatalog {
+object TaviqoCatalog {
     val gifts: List<GiftCatalogItem> = listOf(
         GiftCatalogItem(
             id = "rose",
@@ -280,7 +280,7 @@ object LoboCatalog {
         GiftCatalogItem(
             id = "heart",
             name = "Corazón",
-            description = "Pulso de energía neón cyan",
+            description = "Pulso de energía cyan eléctrico",
             coinCost = 15L,
             animationTier = "pulse",
             badgeSymbol = "Corazón"
@@ -294,28 +294,28 @@ object LoboCatalog {
             badgeSymbol = "Diamante"
         ),
         GiftCatalogItem(
-            id = "lion",
-            name = "León",
-            description = "Rugido dorado en pantalla completa",
+            id = "crown",
+            name = "Corona Imperial",
+            description = "Brillo dorado sobre todo el escenario",
             coinCost = 150L,
-            animationTier = "roar",
-            badgeSymbol = "León"
+            animationTier = "spotlight",
+            badgeSymbol = "Corona"
         ),
         GiftCatalogItem(
             id = "rocket",
             name = "Cohete",
-            description = "Despegue supersónico hacia tendencias",
+            description = "Impulso supersónico hacia tendencias",
             coinCost = 300L,
             animationTier = "launch",
             badgeSymbol = "Cohete"
         ),
         GiftCatalogItem(
-            id = "alpha_wolf",
-            name = "Lobo Alfa Exclusivo",
-            description = "Aullido legendario exclusivo de Lobo Clips AI",
+            id = "taviqo_nova",
+            name = "Supernova Taviqo",
+            description = "Fulgor prismático exclusivo de TAVIQO",
             coinCost = 1000L,
             animationTier = "legendary",
-            badgeSymbol = "Lobo Alfa",
+            badgeSymbol = "Supernova",
             isExclusive = true
         )
     )
@@ -324,6 +324,6 @@ object LoboCatalog {
         CoinPackage("pack_100", "Pack Inicio", 100L, 199L, "Estándar"),
         CoinPackage("pack_500", "Pack Creador", 500L, 799L, "+5% valor"),
         CoinPackage("pack_1200", "Pack Royal", 1200L, 1699L, "+15% valor"),
-        CoinPackage("pack_3000", "Pack Lobo Alfa", 3000L, 3999L, "Exclusivo")
+        CoinPackage("pack_3000", "Pack Escenario VIP", 3000L, 3999L, "Exclusivo")
     )
 }

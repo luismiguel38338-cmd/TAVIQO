@@ -6,20 +6,20 @@ import FirebaseAuth
 import FirebaseFirestore
 
 @main
-struct LoboClipsAIApp: App {
+struct TaviqoApp: App {
     init() {
         FirebaseApp.configure()
     }
 
     var body: some Scene {
         WindowGroup {
-            LoboRootView()
+            TaviqoRootView()
                 .preferredColorScheme(.dark)
         }
     }
 }
 
-struct LoboClipItem: Identifiable, Codable {
+struct TaviqoClipItem: Identifiable, Codable {
     var id: String
     var authorUsername: String
     var caption: String
@@ -28,8 +28,8 @@ struct LoboClipItem: Identifiable, Codable {
     var viewsCount: Int
 }
 
-final class LoboFeedViewModel: ObservableObject {
-    @Published var clips: [LoboClipItem] = []
+final class TaviqoFeedViewModel: ObservableObject {
+    @Published var clips: [TaviqoClipItem] = []
     private let db = Firestore.firestore(
         database: "ai-studio-android-loboclip-f031fd05-ba55-4b71-8396-2e4f1629a0fa"
     )
@@ -44,7 +44,7 @@ final class LoboFeedViewModel: ObservableObject {
                 guard let docs = snapshot?.documents else { return }
                 self?.clips = docs.map { doc in
                     let data = doc.data()
-                    return LoboClipItem(
+                    return TaviqoClipItem(
                         id: doc.documentID,
                         authorUsername: data["authorUsername"] as? String ?? "creador",
                         caption: data["caption"] as? String ?? "",
@@ -57,8 +57,8 @@ final class LoboFeedViewModel: ObservableObject {
     }
 }
 
-struct LoboRootView: View {
-    @StateObject private var vm = LoboFeedViewModel()
+struct TaviqoRootView: View {
+    @StateObject private var vm = TaviqoFeedViewModel()
 
     var body: some View {
         NavigationStack {
@@ -66,10 +66,13 @@ struct LoboRootView: View {
                 Color(red: 0.02, green: 0.03, blue: 0.04).ignoresSafeArea()
                 if vm.clips.isEmpty {
                     VStack(spacing: 12) {
-                        Text("LOBO CLIPS AI")
+                        Text("TAVIQO")
                             .font(.title.bold())
                             .foregroundColor(Color(red: 0, green: 0.94, blue: 1))
-                        Text("Inicia sesión con Google/Firebase iOS para ver el feed vertical real.")
+                        Text("El mundo es tu escenario.")
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.85))
+                        Text("Inicia sesión con Google/Firebase iOS para explorar el escenario real.")
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)

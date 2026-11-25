@@ -28,7 +28,7 @@ val JetBrainsMonoFamily = FontFamily(
     Font(R.font.jetbrains_mono, FontWeight.Bold)
 )
 
-val LoboTypography = Typography(
+val TaviqoTypography = Typography(
     displayLarge = TextStyle(
         fontFamily = OutfitFontFamily,
         fontWeight = FontWeight.Bold,

@@ -21,7 +21,7 @@ import com.example.model.GiftCatalogItem
 import com.example.model.GiftTransaction
 import com.example.model.LiveChatMessage
 import com.example.model.LiveStream
-import com.example.model.LoboCatalog
+import com.example.model.TaviqoCatalog
 import com.example.model.ModerationReport
 import com.example.model.PayoutRequest
 import com.example.model.PrivateAccount

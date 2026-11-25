@@ -61,8 +61,8 @@ test("User profile creation, PII wallet isolation, and privilege escalation prev
   await assertSucceeds(
     aliceDb.collection("users").doc(ALICE_UID).set({
       userId: ALICE_UID,
-      username: "alice_lobo",
-      displayName: "Alice Lobo",
+      username: "alice_taviqo",
+      displayName: "Alice Taviqo",
       bio: "Creadora real",
       verified: false,
       suspended: false,
@@ -79,7 +79,7 @@ test("User profile creation, PII wallet isolation, and privilege escalation prev
   await assertFails(
     bobDb.collection("users").doc(BOB_UID).set({
       userId: BOB_UID,
-      username: "bob_lobo",
+      username: "bob_taviqo",
       displayName: "Bob",
       verified: true,
       suspended: false,
@@ -135,10 +135,10 @@ test("Clips publish, filtered query alignment, engagement counters, and rejectio
     aliceDb.collection("clips").doc("clip_bad").set({
       id: "clip_bad",
       authorId: ALICE_UID,
-      authorUsername: "alice_lobo",
+      authorUsername: "alice_taviqo",
       authorVerified: false,
       caption: "Invalid id field",
-      hashtags: ["#lobo"],
+      hashtags: ["#taviqo"],
       videoUrl: "https://example.com/v.mp4",
       durationMs: 12000,
       likesCount: 0,
@@ -157,10 +157,10 @@ test("Clips publish, filtered query alignment, engagement counters, and rejectio
   await assertSucceeds(
     aliceDb.collection("clips").doc("clip_1").set({
       authorId: ALICE_UID,
-      authorUsername: "alice_lobo",
+      authorUsername: "alice_taviqo",
       authorVerified: false,
-      caption: "Primer clip real en Lobo Clips AI",
-      hashtags: ["#loboclips", "#musica"],
+      caption: "Primer clip real en TAVIQO",
+      hashtags: ["#taviqo", "#musica"],
       videoUrl: "https://storage.googleapis.com/demo/clip1.mp4",
       durationMs: 15000,
       likesCount: 0,
@@ -230,9 +230,9 @@ test("Atomic virtual gift transaction enforces coin balance, prevents negative b
   const batch = aliceDb.batch();
   batch.set(aliceDb.collection("gift_transactions").doc(txId), {
     senderId: ALICE_UID,
-    senderUsername: "alice_lobo",
+    senderUsername: "alice_taviqo",
     recipientId: BOB_UID,
-    recipientUsername: "bob_lobo",
+    recipientUsername: "bob_taviqo",
     giftId: "rocket",
     giftName: "Cohete",
     coinCost: 100,
@@ -259,9 +259,9 @@ test("Atomic virtual gift transaction enforces coin balance, prevents negative b
   await assertFails(
     aliceDb.collection("gift_transactions").doc(txId).set({
       senderId: ALICE_UID,
-      senderUsername: "alice_lobo",
+      senderUsername: "alice_taviqo",
       recipientId: BOB_UID,
-      recipientUsername: "bob_lobo",
+      recipientUsername: "bob_taviqo",
       giftId: "rocket",
       giftName: "Cohete",
       coinCost: 100,
@@ -277,11 +277,11 @@ test("Atomic virtual gift transaction enforces coin balance, prevents negative b
   const badBatch = aliceDb.batch();
   badBatch.set(aliceDb.collection("gift_transactions").doc("tx_gift_overdraft"), {
     senderId: ALICE_UID,
-    senderUsername: "alice_lobo",
+    senderUsername: "alice_taviqo",
     recipientId: BOB_UID,
-    recipientUsername: "bob_lobo",
-    giftId: "lion",
-    giftName: "León",
+    recipientUsername: "bob_taviqo",
+    giftId: "crown",
+    giftName: "Corona Imperial",
     coinCost: 1000,
     creatorNetCoins: 700,
     platformFeeCoins: 300,
@@ -309,7 +309,7 @@ test("Private conversations isolate participants; Admin panel honors verified ad
   await assertSucceeds(
     aliceDb.collection("conversations").doc("conv_ab").set({
       participantIds: [ALICE_UID, BOB_UID],
-      participantNames: { [ALICE_UID]: "alice_lobo", [BOB_UID]: "bob_lobo" },
+      participantNames: { [ALICE_UID]: "alice_taviqo", [BOB_UID]: "bob_taviqo" },
       lastMessage: "Hola!",
       lastSenderId: ALICE_UID,
       unreadUserIds: [BOB_UID],

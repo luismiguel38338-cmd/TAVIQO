@@ -86,6 +86,7 @@ import com.example.model.ClipComment
 import com.example.model.GiftCatalogItem
 import com.example.model.UserProfile
 import com.example.ui.components.SendGiftBottomSheet
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.components.VideoPlayerBox
 import com.example.ui.theme.CoinGold
 import com.example.ui.theme.DeepBlack
@@ -324,7 +325,7 @@ fun FeedScreen(
                                                 type = "text/plain"
                                                 putExtra(
                                                     Intent.EXTRA_TEXT,
-                                                    "Mira este clip de @${clip.authorUsername} en Lobo Clips AI: ${clip.caption} ${clip.videoUrl}"
+                                                    "Mira este clip de @${clip.authorUsername} en TAVIQO: ${clip.caption} ${clip.videoUrl}"
                                                 )
                                             }
                                             context.startActivity(Intent.createChooser(sendIntent, "Compartir clip"))
@@ -439,6 +440,7 @@ fun FeedScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
+                    TaviqoLogoMark(size = 32.dp)
                     FeedTabPill(
                         label = "Para ti",
                         selected = feedFilter == "for_you",
@@ -605,8 +607,8 @@ private fun EmptyFeedState(
         verticalArrangement = Arrangement.Center
     ) {
         Image(
-            painter = painterResource(id = R.drawable.img_empty_feed),
-            contentDescription = "Sin vídeos todavía",
+            painter = painterResource(id = R.drawable.img_taviqo_empty),
+            contentDescription = "Escenario TAVIQO sin vídeos todavía",
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(190.dp)
@@ -614,16 +616,16 @@ private fun EmptyFeedState(
         )
         Spacer(modifier = Modifier.height(18.dp))
         Text(
-            text = if (isFollowingTab) "Aún no sigues a ningún creador" else "La comunidad está lista para tu primer clip",
+            text = if (isFollowingTab) "Aún no sigues a ningún creador" else "El mundo es tu escenario",
             style = MaterialTheme.typography.headlineMedium,
             color = TextPrimary
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = if (isFollowingTab) {
-                "Explora la pestaña Para ti para descubrir usuarios reales y seguir su contenido."
+                "Explora la pestaña Para ti en TAVIQO para descubrir usuarios reales y seguir su contenido."
             } else {
-                "Lobo Clips AI no muestra vídeos simulados ni perfiles falsos. Graba o publica un vídeo real para iniciar el feed."
+                "TAVIQO no muestra vídeos simulados ni perfiles falsos. Graba o publica un vídeo real para inaugurar el escenario."
             },
             style = MaterialTheme.typography.bodyMedium,
             color = TextSecondary

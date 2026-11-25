@@ -47,6 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.R
 import com.example.data.GoogleSignInButton
+import com.example.ui.components.TaviqoBrandLockup
 import com.example.ui.theme.DeepBlack
 import com.example.ui.theme.LiveCrimson
 import com.example.ui.theme.NeonCyan
@@ -86,8 +87,8 @@ fun AuthScreen(
                     .clip(RoundedCornerShape(24.dp))
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.img_wolf_hero),
-                    contentDescription = "Lobo Clips AI Hero",
+                    painter = painterResource(id = R.drawable.img_taviqo_hero),
+                    contentDescription = "TAVIQO — El mundo es tu escenario",
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize()
                 )
@@ -96,26 +97,16 @@ fun AuthScreen(
                         .fillMaxSize()
                         .background(
                             Brush.verticalGradient(
-                                listOf(Color.Transparent, DeepBlack.copy(alpha = 0.88f))
+                                listOf(Color.Transparent, DeepBlack.copy(alpha = 0.90f))
                             )
                         )
                 )
-                Column(
+                Box(
                     modifier = Modifier
                         .align(Alignment.BottomStart)
                         .padding(18.dp)
                 ) {
-                    Text(
-                        text = "LOBO CLIPS AI",
-                        style = MaterialTheme.typography.headlineLarge,
-                        color = NeonCyan,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = "Red social real de vídeos verticales 9:16",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = TextPrimary
-                    )
+                    TaviqoBrandLockup(showSlogan = true, logoSize = 44.dp)
                 }
             }
 
@@ -124,13 +115,13 @@ fun AuthScreen(
             FeatureHighlightCard(
                 icon = Icons.Default.VerifiedUser,
                 title = "100% Usuarios Reales",
-                subtitle = "Sin perfiles ficticios, bots ni métricas simuladas. Cada clip, comentario y seguidor es real."
+                subtitle = "Sin perfiles ficticios, bots ni métricas simuladas. Cada clip, comentario y seguidor en TAVIQO es real."
             )
             Spacer(modifier = Modifier.height(10.dp))
             FeatureHighlightCard(
                 icon = Icons.Default.CardGiftcard,
                 title = "Regalos Virtuales y Directos",
-                subtitle = "Envía rosas, diamantes, cohetes y lobos alfa con transacciones verificadas y panel para creadores."
+                subtitle = "Envía rosas, diamantes, coronas imperiales, cohetes y supernovas con transacciones verificadas."
             )
             Spacer(modifier = Modifier.height(10.dp))
             FeatureHighlightCard(

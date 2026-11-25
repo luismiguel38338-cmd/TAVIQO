@@ -89,7 +89,7 @@ fun AdminPanelScreen(
             }
             Icon(Icons.Default.AdminPanelSettings, contentDescription = null, tint = CoinGold)
             Spacer(modifier = Modifier.width(8.dp))
-            Text("Panel Administrativo", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+            Text("Panel Admin TAVIQO", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
         }
 
         // Real platform telemetry cards

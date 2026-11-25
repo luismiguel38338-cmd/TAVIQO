@@ -1,4 +1,4 @@
-name: Lobo Clips AI CI
+name: TAVIQO CI
 
 on:
   push:

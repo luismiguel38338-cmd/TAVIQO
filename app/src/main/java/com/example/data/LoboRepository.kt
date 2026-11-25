@@ -80,18 +80,18 @@ class LoboRepository(
 
             val userSnap = userRef.get().await()
             if (!userSnap.exists()) {
-                val baseName = (user.displayName ?: user.email?.substringBefore("@") ?: "lobo")
+                val baseName = (user.displayName ?: user.email?.substringBefore("@") ?: "taviqo")
                     .lowercase()
                     .replace(Regex("[^a-z0-9_]"), "_")
                     .trim('_')
-                    .ifBlank { "lobo" }
+                    .ifBlank { "taviqo" }
                 val handle = (baseName.take(20) + "_" + uid.take(4)).take(30).padEnd(3, '0')
-                val display = (user.displayName ?: "Creador Lobo").trim().take(40).ifBlank { "Creador Lobo" }
+                val display = (user.displayName ?: "Creador Taviqo").trim().take(40).ifBlank { "Creador Taviqo" }
                 val profileMap = buildMap<String, Any> {
                     put("userId", uid)
                     put("username", handle)
                     put("displayName", display)
-                    put("bio", "Creador en Lobo Clips AI")
+                    put("bio", "Creador en TAVIQO • El mundo es tu escenario.")
                     user.photoUrl?.toString()?.take(500)?.let { put("avatarUrl", it) }
                     put("verified", false)
                     put("suspended", false)
@@ -375,7 +375,7 @@ class LoboRepository(
             path = clipRef.path
             val payload = buildMap<String, Any> {
                 put("authorId", uid)
-                put("authorUsername", myProfile.username.ifBlank { "lobo_user" }.take(30))
+                put("authorUsername", myProfile.username.ifBlank { "taviqo_user" }.take(30))
                 myProfile.avatarUrl.takeIf { it.isNotBlank() }?.let { put("authorAvatarUrl", it.take(500)) }
                 put("authorVerified", myProfile.verified)
                 put("caption", cleanCaption)
@@ -562,7 +562,7 @@ class LoboRepository(
             val payload = buildMap<String, Any> {
                 put("clipId", clip.id)
                 put("authorId", uid)
-                put("authorUsername", myProfile.username.ifBlank { "lobo_user" }.take(30))
+                put("authorUsername", myProfile.username.ifBlank { "taviqo_user" }.take(30))
                 myProfile.avatarUrl.takeIf { it.isNotBlank() }?.let { put("authorAvatarUrl", it.take(500)) }
                 put("text", cleanText)
                 put("createdAt", FieldValue.serverTimestamp())
@@ -643,7 +643,7 @@ class LoboRepository(
                     actorUsername = myProfile.username,
                     type = "follow",
                     title = "Nuevo seguidor",
-                    body = "@${myProfile.username} empezó a seguirte en Lobo Clips AI.",
+                    body = "@${myProfile.username} empezó a seguirte en TAVIQO.",
                     referenceId = uid
                 )
             }
@@ -697,7 +697,7 @@ class LoboRepository(
             path = streamRef.path
             val payload = buildMap<String, Any> {
                 put("hostId", uid)
-                put("hostUsername", myProfile.username.ifBlank { "host_lobo" }.take(30))
+                put("hostUsername", myProfile.username.ifBlank { "host_taviqo" }.take(30))
                 myProfile.avatarUrl.takeIf { it.isNotBlank() }?.let { put("hostAvatarUrl", it.take(500)) }
                 put("title", cleanTitle)
                 put("category", category.trim().ifBlank { "General" }.take(40))
@@ -822,7 +822,7 @@ class LoboRepository(
                     mapOf(
                         "streamId" to streamId,
                         "senderId" to uid,
-                        "senderUsername" to myProfile.username.ifBlank { "lobo_user" }.take(30),
+                        "senderUsername" to myProfile.username.ifBlank { "taviqo_user" }.take(30),
                         "text" to clean,
                         "kind" to kind,
                         "createdAt" to FieldValue.serverTimestamp()

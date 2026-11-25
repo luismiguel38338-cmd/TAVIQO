@@ -4,6 +4,16 @@ import { collection, onSnapshot, orderBy, query, where } from "firebase/firestor
 import { auth, db, signInGoogle, signOutWeb } from "./firebase";
 import "./styles.css";
 
+function TaviqoMark() {
+  return (
+    <svg width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="44" fill="none" stroke="#00F0FF" strokeWidth="4" />
+      <polygon points="23,30 77,30 70,42 30,42" fill="#00F0FF" />
+      <polygon points="43,38 57,38 54,74 46,80" fill="#00C2FF" />
+    </svg>
+  );
+}
+
 export default function App() {
   const [user, setUser] = useState(null);
   const [clips, setClips] = useState([]);
@@ -35,50 +45,53 @@ export default function App() {
   }, [user]);
 
   return (
-    <div className="lobo-shell">
-      <header className="lobo-header">
-        <div>
-          <span className="lobo-brand">LOBO CLIPS AI</span>
-          <span className="lobo-sub">Web Multiplataforma • Usuarios 100% Reales</span>
+    <div className="taviqo-shell">
+      <header className="taviqo-header">
+        <div className="taviqo-brand-wrap">
+          <TaviqoMark />
+          <div>
+            <span className="taviqo-brand">TAVIQO</span>
+            <span className="taviqo-sub">El mundo es tu escenario. • Usuarios 100% Reales</span>
+          </div>
         </div>
         {user ? (
-          <button className="lobo-btn-outline" onClick={signOutWeb}>
+          <button className="taviqo-btn-outline" onClick={signOutWeb}>
             Salir ({user.displayName || user.email})
           </button>
         ) : (
-          <button className="lobo-btn-cyan" onClick={signInGoogle}>
+          <button className="taviqo-btn-cyan" onClick={signInGoogle}>
             Iniciar sesión con Google
           </button>
         )}
       </header>
 
       {!user ? (
-        <main className="lobo-hero">
-          <h1>Red social de vídeos 9:16 con regalos y directos reales</h1>
+        <main className="taviqo-hero">
+          <h1>El mundo es tu escenario.</h1>
           <p>
-            Conectada al mismo Cloud Firestore de Android e iOS. Cero perfiles falsos, cero
-            interacciones simuladas.
+            Vídeos cortos 9:16, directos en vivo y regalos virtuales conectados en tiempo real con
+            Android e iOS. Cero perfiles falsos, cero interacciones simuladas.
           </p>
         </main>
       ) : (
-        <main className="lobo-grid">
+        <main className="taviqo-grid">
           <section>
             <h2>Feed Vertical Activo ({clips.length})</h2>
             {clips.length === 0 ? (
-              <p className="lobo-muted">Aún no hay clips publicados por usuarios reales.</p>
+              <p className="taviqo-muted">Aún no hay clips publicados por usuarios reales.</p>
             ) : (
               clips.map((clip) => (
-                <article key={clip.id} className="lobo-card">
-                  <div className="lobo-author">@{clip.authorUsername}</div>
+                <article key={clip.id} className="taviqo-card">
+                  <div className="taviqo-author">@{clip.authorUsername}</div>
                   {clip.videoUrl?.startsWith("https://") && (
-                    <video src={clip.videoUrl} controls playsInline className="lobo-video-9-16" />
+                    <video src={clip.videoUrl} controls playsInline className="taviqo-video-9-16" />
                   )}
                   <p>{clip.caption}</p>
-                  <div className="lobo-stats">
-                    <span>❤️ {clip.likesCount || 0}</span>
-                    <span>💬 {clip.commentsCount || 0}</span>
-                    <span>👁️ {clip.viewsCount || 0}</span>
-                    <span>🎁 {clip.giftsCoinsTotal || 0}</span>
+                  <div className="taviqo-stats">
+                    <span>Likes: {clip.likesCount || 0}</span>
+                    <span>Comentarios: {clip.commentsCount || 0}</span>
+                    <span>Vistas: {clip.viewsCount || 0}</span>
+                    <span>Regalos: {clip.giftsCoinsTotal || 0}</span>
                   </div>
                 </article>
               ))
@@ -88,12 +101,14 @@ export default function App() {
           <aside>
             <h2>Directos en Vivo ({streams.length})</h2>
             {streams.length === 0 ? (
-              <p className="lobo-muted">No hay transmisiones activas en este momento.</p>
+              <p className="taviqo-muted">No hay transmisiones activas en este momento.</p>
             ) : (
               streams.map((s) => (
-                <div key={s.id} className="lobo-card">
+                <div key={s.id} className="taviqo-card">
                   <strong>{s.title}</strong>
-                  <p className="lobo-muted">@{s.hostUsername} • {s.viewerCount || 0} viendo</p>
+                  <p className="taviqo-muted">
+                    @{s.hostUsername} • {s.viewerCount || 0} viendo
+                  </p>
                 </div>
               ))
             )}

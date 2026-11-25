@@ -86,6 +86,7 @@ import com.example.data.signOut
 import com.example.ui.MainViewModel
 import com.example.ui.components.AiAssistantSheet
 import com.example.ui.components.GiftBurstOverlay
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.screens.AdminPanelScreen
 import com.example.ui.screens.AuthScreen
 import com.example.ui.screens.FeedScreen
@@ -96,12 +97,12 @@ import com.example.ui.screens.ProfileScreen
 import com.example.ui.screens.PublishClipScreen
 import com.example.ui.theme.DeepBlack
 import com.example.ui.theme.LiveCrimson
-import com.example.ui.theme.LoboClipsTheme
 import com.example.ui.theme.NeonCyan
 import com.example.ui.theme.ObsidianSurface
 import com.example.ui.theme.RoyalBlueBorder
 import com.example.ui.theme.RoyalBlueDark
 import com.example.ui.theme.RoyalBlueElevated
+import com.example.ui.theme.TaviqoTheme
 import com.example.ui.theme.TextMuted
 import com.example.ui.theme.TextPrimary
 import com.google.firebase.Firebase
@@ -117,7 +118,7 @@ private const val ROUTE_PROFILE = "profile"
 private const val ROUTE_CREATOR_PATTERN = "creator/{uid}"
 private const val ROUTE_ADMIN = "admin"
 
-private data class LoboNavItem(
+private data class TaviqoNavItem(
     val route: String,
     val label: String,
     val selectedIcon: ImageVector,
@@ -126,12 +127,12 @@ private data class LoboNavItem(
 )
 
 private val TOP_LEVEL_ITEMS = listOf(
-    LoboNavItem(ROUTE_FEED, "Inicio", Icons.Filled.Home, Icons.Outlined.Home, "nav_feed"),
-    LoboNavItem(ROUTE_LIVE, "Directos", Icons.Filled.LiveTv, Icons.Outlined.LiveTv, "nav_live"),
-    LoboNavItem(ROUTE_PUBLISH, "Crear", Icons.Filled.AddBox, Icons.Outlined.AddBox, "nav_publish"),
-    LoboNavItem(ROUTE_INBOX, "Chat", Icons.Filled.ChatBubble, Icons.Outlined.ChatBubbleOutline, "nav_inbox"),
-    LoboNavItem(ROUTE_WALLET, "Regalos", Icons.Filled.AccountBalanceWallet, Icons.Outlined.AccountBalanceWallet, "nav_wallet"),
-    LoboNavItem(ROUTE_PROFILE, "Perfil", Icons.Filled.Person, Icons.Outlined.Person, "nav_profile")
+    TaviqoNavItem(ROUTE_FEED, "Inicio", Icons.Filled.Home, Icons.Outlined.Home, "nav_feed"),
+    TaviqoNavItem(ROUTE_LIVE, "Directos", Icons.Filled.LiveTv, Icons.Outlined.LiveTv, "nav_live"),
+    TaviqoNavItem(ROUTE_PUBLISH, "Crear", Icons.Filled.AddBox, Icons.Outlined.AddBox, "nav_publish"),
+    TaviqoNavItem(ROUTE_INBOX, "Chat", Icons.Filled.ChatBubble, Icons.Outlined.ChatBubbleOutline, "nav_inbox"),
+    TaviqoNavItem(ROUTE_WALLET, "Regalos", Icons.Filled.AccountBalanceWallet, Icons.Outlined.AccountBalanceWallet, "nav_wallet"),
+    TaviqoNavItem(ROUTE_PROFILE, "Perfil", Icons.Filled.Person, Icons.Outlined.Person, "nav_profile")
 )
 
 class MainActivity : ComponentActivity() {
@@ -140,7 +141,7 @@ class MainActivity : ComponentActivity() {
         configureAppCheck(this, intent)
         enableEdgeToEdge()
         setContent {
-            LoboClipsTheme {
+            TaviqoTheme {
                 AppRoot()
             }
         }
@@ -349,10 +350,13 @@ private fun AuthenticatedShell(
                             containerColor = ObsidianSurface,
                             contentColor = TextPrimary,
                             header = {
+                                TaviqoLogoMark(
+                                    size = 34.dp,
+                                    modifier = Modifier.padding(top = 12.dp, bottom = 6.dp)
+                                )
                                 IconButton(
                                     onClick = { showAiAssistant = true },
                                     modifier = Modifier
-                                        .padding(top = 12.dp)
                                         .size(48.dp)
                                         .testTag("rail_ai_button")
                                 ) {

@@ -77,6 +77,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.example.core.UiState
 import com.example.model.AiCreatorSuggestion
 import com.example.model.AiModerationResult
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.components.VideoPlayerBox
 import com.example.ui.theme.DeepBlack
 import com.example.ui.theme.EmeraldSuccess
@@ -107,7 +108,7 @@ fun PublishClipScreen(
     var sourceMode by remember { mutableIntStateOf(0) } // 0=Galería, 1=Cámara, 2=URL HTTPS
     var selectedVideoUri by remember { mutableStateOf("") }
     var caption by remember { mutableStateOf("") }
-    var hashtags by remember { mutableStateOf("#LoboClipsAI") }
+    var hashtags by remember { mutableStateOf("#Taviqo") }
     var aiTopic by remember { mutableStateOf("") }
     var useFrontCamera by remember { mutableStateOf(false) }
 
@@ -155,11 +156,15 @@ fun PublishClipScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        Text(
-            text = "Publicar Clip 9:16",
-            style = MaterialTheme.typography.headlineMedium,
-            color = TextPrimary
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            TaviqoLogoMark(size = 32.dp)
+            Spacer(modifier = Modifier.width(10.dp))
+            Text(
+                text = "Estudio TAVIQO • Clip 9:16",
+                style = MaterialTheme.typography.headlineMedium,
+                color = TextPrimary
+            )
+        }
         Text(
             text = "Graba con tu cámara, elige de tu galería o conecta una URL MP4/HLS real. Gemini revisa la seguridad antes de publicar.",
             style = MaterialTheme.typography.bodyMedium,
@@ -351,10 +356,10 @@ fun PublishClipScreen(
                                         val name = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
                                             .format(System.currentTimeMillis())
                                         val contentValues = ContentValues().apply {
-                                            put(MediaStore.MediaColumns.DISPLAY_NAME, "lobo_$name")
+                                            put(MediaStore.MediaColumns.DISPLAY_NAME, "taviqo_$name")
                                             put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
                                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                                                put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/LoboClipsAI")
+                                                put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/Taviqo")
                                             }
                                         }
                                         val outputOptions = MediaStoreOutputOptions.Builder(

@@ -1,7 +1,7 @@
 {
-  "name": "lobo-clips-ai-functions",
+  "name": "taviqo-functions",
   "version": "1.0.0",
-  "description": "Cloud Functions for Lobo Clips AI server-side payment verification, gift ledger integrity, and creator payouts",
+  "description": "Cloud Functions for TAVIQO server-side payment verification, gift ledger integrity, and creator payouts",
   "main": "index.js",
   "engines": {
     "node": "20"

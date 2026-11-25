@@ -9,11 +9,11 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performScrollTo
 import androidx.test.core.app.ApplicationProvider
 import com.example.core.UiState
-import com.example.model.LoboCatalog
 import com.example.model.PrivateAccount
+import com.example.model.TaviqoCatalog
 import com.example.ui.screens.AuthScreen
 import com.example.ui.screens.GiftsAndWalletScreen
-import com.example.ui.theme.LoboClipsTheme
+import com.example.ui.theme.TaviqoTheme
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -30,35 +30,36 @@ class ExampleRobolectricTest {
     val composeRule = createComposeRule()
 
     @Test
-    fun `app name matches Lobo Clips AI`() {
+    fun `app name matches Taviqo`() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val appName = context.getString(R.string.app_name)
-        assertEquals("Lobo Clips AI", appName)
+        assertEquals("Taviqo", appName)
     }
 
     @Test
     fun `gift catalog computes exact 70_30 creator and platform split`() {
-        LoboCatalog.gifts.forEach { gift ->
+        TaviqoCatalog.gifts.forEach { gift ->
             assertEquals(gift.coinCost, gift.creatorNetCoins + gift.platformFeeCoins)
             assertEquals((gift.coinCost * 70L) / 100L, gift.creatorNetCoins)
             assertTrue(gift.coinCost > 0L)
         }
-        val alphaWolf = LoboCatalog.gifts.first { it.id == "alpha_wolf" }
-        assertEquals(1000L, alphaWolf.coinCost)
-        assertEquals(700L, alphaWolf.creatorNetCoins)
-        assertEquals(300L, alphaWolf.platformFeeCoins)
-        assertTrue(alphaWolf.isExclusive)
+        val supernova = TaviqoCatalog.gifts.first { it.id == "taviqo_nova" }
+        assertEquals(1000L, supernova.coinCost)
+        assertEquals(700L, supernova.creatorNetCoins)
+        assertEquals(300L, supernova.platformFeeCoins)
+        assertTrue(supernova.isExclusive)
     }
 
     @Test
-    fun `auth screen renders real Google sign in button and branding`() {
+    fun `auth screen renders TAVIQO brand slogan and real Google sign in button`() {
         composeRule.setContent {
-            LoboClipsTheme {
+            TaviqoTheme {
                 AuthScreen(onAuthSuccess = {})
             }
         }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("LOBO CLIPS AI").assertIsDisplayed()
+        composeRule.onNodeWithText("TAVIQO").assertIsDisplayed()
+        composeRule.onNodeWithText("El mundo es tu escenario.").assertIsDisplayed()
         composeRule.onNodeWithTag("google_sign_in_button")
             .performScrollTo()
             .assertIsDisplayed()
@@ -67,7 +68,7 @@ class ExampleRobolectricTest {
     @Test
     fun `wallet screen displays real zero balance without simulated coins`() {
         composeRule.setContent {
-            LoboClipsTheme {
+            TaviqoTheme {
                 GiftsAndWalletScreen(
                     currentUserId = "user_real_1",
                     walletState = UiState.Success(
@@ -87,7 +88,7 @@ class ExampleRobolectricTest {
             }
         }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("Tienda y Regalos").assertIsDisplayed()
+        composeRule.onNodeWithText("Tienda y Regalos TAVIQO").assertIsDisplayed()
         composeRule.onNodeWithText("Saldo de Monedas").assertIsDisplayed()
         composeRule.onNodeWithTag("request_payout_button")
             .performScrollTo()

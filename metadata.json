@@ -1,6 +1,6 @@
 {
-  "name": "Lobo Clips AI",
-  "description": "Red social de vídeos cortos verticales 9:16 con usuarios reales, regalos virtuales, transmisiones en vivo, mensajería en tiempo real y herramientas auxiliares con Gemini AI.",
+  "name": "Taviqo",
+  "description": "TAVIQO — El mundo es tu escenario. Red social internacional de vídeos cortos 9:16, directos en vivo, creadores reales, regalos virtuales y Gemini AI.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

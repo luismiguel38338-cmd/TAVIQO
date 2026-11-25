@@ -1,19 +1,18 @@
 package com.example.ui.theme
 
 import android.app.Activity
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.core.view.WindowCompat
 
-private val LoboDarkColorScheme = darkColorScheme(
+private val TaviqoDarkColorScheme = darkColorScheme(
     primary = NeonCyan,
     onPrimary = DeepBlack,
     primaryContainer = RoyalBlueElevated,
@@ -35,13 +34,13 @@ private val LoboDarkColorScheme = darkColorScheme(
     onError = TextPrimary
 )
 
-val LoboShapes = Shapes(
+val TaviqoShapes = Shapes(
     small = RoundedCornerShape(10.dp),
     medium = RoundedCornerShape(16.dp),
     large = RoundedCornerShape(24.dp)
 )
 
-object LoboBrushes {
+object TaviqoBrushes {
     val RoyalHeroGradient = Brush.verticalGradient(
         colors = listOf(RoyalBlueDark, ObsidianSurface, DeepBlack)
     )
@@ -54,7 +53,7 @@ object LoboBrushes {
 }
 
 @Composable
-fun LoboClipsTheme(
+fun TaviqoTheme(
     content: @Composable () -> Unit
 ) {
     val view = LocalView.current
@@ -69,9 +68,9 @@ fun LoboClipsTheme(
     }
 
     MaterialTheme(
-        colorScheme = LoboDarkColorScheme,
-        typography = LoboTypography,
-        shapes = LoboShapes,
+        colorScheme = TaviqoDarkColorScheme,
+        typography = TaviqoTypography,
+        shapes = TaviqoShapes,
         content = content
     )
 }

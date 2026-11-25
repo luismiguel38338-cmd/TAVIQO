@@ -38,7 +38,7 @@ import androidx.compose.material.icons.filled.Diamond
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocalFlorist
 import androidx.compose.material.icons.filled.MonetizationOn
-import androidx.compose.material.icons.filled.Pets
+import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.RocketLaunch
 import androidx.compose.material.icons.filled.WorkspacePremium
 import androidx.compose.material3.Button
@@ -65,7 +65,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.model.GiftBurstEvent
 import com.example.model.GiftCatalogItem
-import com.example.model.LoboCatalog
+import com.example.model.TaviqoCatalog
 import com.example.ui.theme.CoinGold
 import com.example.ui.theme.DeepBlack
 import com.example.ui.theme.ElectricCyan
@@ -83,9 +83,9 @@ fun giftIcon(giftId: String): ImageVector = when (giftId) {
     "rose" -> Icons.Default.LocalFlorist
     "heart" -> Icons.Default.Favorite
     "diamond" -> Icons.Default.Diamond
-    "lion" -> Icons.Default.Pets
+    "crown" -> Icons.Default.EmojiEvents
     "rocket" -> Icons.Default.RocketLaunch
-    "alpha_wolf" -> Icons.Default.WorkspacePremium
+    "taviqo_nova" -> Icons.Default.WorkspacePremium
     else -> Icons.Default.AutoAwesome
 }
 
@@ -93,9 +93,9 @@ fun giftTint(giftId: String): Color = when (giftId) {
     "rose" -> Color(0xFFFF5C8A)
     "heart" -> LiveCrimson
     "diamond" -> NeonCyan
-    "lion" -> CoinGold
+    "crown" -> CoinGold
     "rocket" -> ElectricCyan
-    "alpha_wolf" -> Color(0xFF7DD3FC)
+    "taviqo_nova" -> Color(0xFF7DD3FC)
     else -> NeonCyan
 }
 
@@ -174,7 +174,7 @@ fun SendGiftBottomSheet(
                 contentPadding = PaddingValues(vertical = 4.dp),
                 modifier = Modifier.height(270.dp)
             ) {
-                items(LoboCatalog.gifts, key = { it.id }) { gift ->
+                items(TaviqoCatalog.gifts, key = { it.id }) { gift ->
                     val canAfford = coinBalance >= gift.coinCost
                     val tint = giftTint(gift.id)
                     Surface(

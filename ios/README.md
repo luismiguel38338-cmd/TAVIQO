@@ -1,4 +1,6 @@
-# Lobo Clips AI — Cliente iOS (SwiftUI)
+# TAVIQO — Cliente iOS (SwiftUI)
+
+> **El mundo es tu escenario.**
 
 Este módulo contiene el paquete Swift (`Package.swift`) y la aplicación base SwiftUI (`Sources/LoboClipsApp.swift`) conectada al mismo proyecto Firebase (`gen-lang-client-0174699991`) y base de datos Cloud Firestore (`ai-studio-android-loboclip-f031fd05-ba55-4b71-8396-2e4f1629a0fa`).
 

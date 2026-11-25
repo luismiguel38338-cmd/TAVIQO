@@ -49,9 +49,10 @@ import com.example.core.UiState
 import com.example.model.CoinPackage
 import com.example.model.CoinPurchase
 import com.example.model.GiftTransaction
-import com.example.model.LoboCatalog
+import com.example.model.TaviqoCatalog
 import com.example.model.PayoutRequest
 import com.example.model.PrivateAccount
+import com.example.ui.components.TaviqoLogoMark
 import com.example.ui.components.giftIcon
 import com.example.ui.components.giftTint
 import com.example.ui.theme.AmberWarning
@@ -95,7 +96,11 @@ fun GiftsAndWalletScreen(
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         item {
-            Text("Tienda y Regalos", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                TaviqoLogoMark(size = 30.dp)
+                Spacer(modifier = Modifier.width(10.dp))
+                Text("Tienda y Regalos TAVIQO", style = MaterialTheme.typography.headlineMedium, color = TextPrimary)
+            }
             Text(
                 "Transacciones validadas en servidor. Sin compras ni ganancias simuladas.",
                 style = MaterialTheme.typography.bodyMedium,
@@ -173,7 +178,7 @@ fun GiftsAndWalletScreen(
             Text("Catálogo Oficial de Regalos", style = MaterialTheme.typography.titleLarge, color = TextPrimary)
         }
 
-        items(LoboCatalog.gifts, key = { it.id }) { gift ->
+        items(TaviqoCatalog.gifts, key = { it.id }) { gift ->
             val tint = giftTint(gift.id)
             Surface(
                 shape = RoundedCornerShape(16.dp),
@@ -220,7 +225,7 @@ fun GiftsAndWalletScreen(
             Text("Paquetes de Monedas (Pago Verificado)", style = MaterialTheme.typography.titleLarge, color = TextPrimary)
         }
 
-        items(LoboCatalog.coinPackages, key = { it.id }) { pkg ->
+        items(TaviqoCatalog.coinPackages, key = { it.id }) { pkg ->
             Surface(
                 shape = RoundedCornerShape(16.dp),
                 color = ObsidianSurface,
