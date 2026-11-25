@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="firestore_database_id" translatable="false">ai-studio-android-loboclip-f031fd05-ba55-4b71-8396-2e4f1629a0fa</string>
+    <string name="recaptcha_site_key" translatable="false">6Ldw6zAuAAAAAI8qAJP0yomn0tE7N_Kgjir1RY2R</string>
+</resources>

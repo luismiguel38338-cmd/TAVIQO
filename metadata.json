@@ -1,0 +1,6 @@
+{
+  "name": "Lobo Clips AI",
+  "description": "Red social de vídeos cortos verticales 9:16 con usuarios reales, regalos virtuales, transmisiones en vivo, mensajería en tiempo real y herramientas auxiliares con Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

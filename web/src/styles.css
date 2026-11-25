@@ -1,0 +1,104 @@
+:root {
+  --bg: #05070b;
+  --royal: #0f1f4b;
+  --cyan: #00f0ff;
+  --card: #0c1220;
+  --border: #1e3a8a;
+}
+
+.lobo-shell {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--royal), var(--bg) 60%);
+  color: #f8fafc;
+  padding: 20px;
+}
+
+.lobo-header {
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.lobo-brand {
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--cyan);
+  margin-right: 12px;
+}
+
+.lobo-sub, .lobo-muted {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.lobo-btn-cyan {
+  background: var(--cyan);
+  color: var(--bg);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lobo-btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.lobo-hero {
+  max-width: 680px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+.lobo-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.lobo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.lobo-author {
+  color: var(--cyan);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.lobo-video-9-16 {
+  width: 100%;
+  max-height: 520px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.lobo-stats {
+  display: flex;
+  gap: 14px;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .lobo-grid {
+    grid-template-columns: 1fr;
+  }
+}

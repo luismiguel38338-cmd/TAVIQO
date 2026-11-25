@@ -1,0 +1,428 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Public creator profile without PII.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" },
+        "bio": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "suspended": { "type": "boolean" },
+        "followersCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "clipsCount": { "type": "integer" },
+        "likesCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "username",
+        "displayName",
+        "verified",
+        "suspended",
+        "followersCount",
+        "followingCount",
+        "clipsCount",
+        "likesCount",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "PrivateAccount": {
+      "title": "PrivateAccount",
+      "description": "Private PII, wallet balance, creator earnings, and blocked users.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "moderator", "admin"] },
+        "coinBalance": { "type": "integer" },
+        "creatorEarningsCoins": { "type": "integer" },
+        "totalSpentCoins": { "type": "integer" },
+        "blockedUserIds": { "type": "array" },
+        "lastTxId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "role",
+        "coinBalance",
+        "creatorEarningsCoins",
+        "totalSpentCoins",
+        "blockedUserIds",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "FollowEdge": {
+      "title": "FollowEdge",
+      "description": "Directed follow relationship from follower to creator.",
+      "type": "object",
+      "properties": {
+        "followerId": { "type": "string" },
+        "targetUserId": { "type": "string" },
+        "targetUsername": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["followerId", "targetUserId", "targetUsername", "createdAt"]
+    },
+    "FavoriteClip": {
+      "title": "FavoriteClip",
+      "description": "Saved favorite clip reference for a user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "clipId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "clipId", "createdAt"]
+    },
+    "UserNotification": {
+      "title": "UserNotification",
+      "description": "Real-time activity notification (gifts, comments, followers, moderation).",
+      "type": "object",
+      "properties": {
+        "recipientId": { "type": "string" },
+        "actorId": { "type": "string" },
+        "actorUsername": { "type": "string" },
+        "type": { "type": "string", "enum": ["gift", "comment", "like", "follow", "system"] },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "referenceId": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["recipientId", "actorId", "actorUsername", "type", "title", "body", "read", "createdAt", "updatedAt"]
+    },
+    "Clip": {
+      "title": "Clip",
+      "description": "Published 9:16 vertical short video clip.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "authorVerified": { "type": "boolean" },
+        "caption": { "type": "string" },
+        "hashtags": { "type": "array" },
+        "videoUrl": { "type": "string" },
+        "thumbnailUrl": { "type": "string" },
+        "durationMs": { "type": "integer" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "viewsCount": { "type": "integer" },
+        "sharesCount": { "type": "integer" },
+        "giftsCoinsTotal": { "type": "integer" },
+        "status": { "type": "string", "enum": ["active", "flagged", "removed"] },
+        "aiModerationStatus": { "type": "string", "enum": ["approved", "review", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "authorId",
+        "authorUsername",
+        "authorVerified",
+        "caption",
+        "hashtags",
+        "videoUrl",
+        "durationMs",
+        "likesCount",
+        "commentsCount",
+        "viewsCount",
+        "sharesCount",
+        "giftsCoinsTotal",
+        "status",
+        "aiModerationStatus",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ClipLike": {
+      "title": "ClipLike",
+      "description": "Per-user like marker preventing duplicate likes.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "clipId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "clipId", "createdAt"]
+    },
+    "ClipComment": {
+      "title": "ClipComment",
+      "description": "Real user comment on a clip.",
+      "type": "object",
+      "properties": {
+        "clipId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorUsername": { "type": "string" },
+        "authorAvatarUrl": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["clipId", "authorId", "authorUsername", "text", "createdAt"]
+    },
+    "LiveStream": {
+      "title": "LiveStream",
+      "description": "Live broadcast room with real stream URL, real viewer counter, and gifts.",
+      "type": "object",
+      "properties": {
+        "hostId": { "type": "string" },
+        "hostUsername": { "type": "string" },
+        "hostAvatarUrl": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "streamUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["live", "ended", "terminated"] },
+        "viewerCount": { "type": "integer" },
+        "giftsCoinsTotal": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "hostId",
+        "hostUsername",
+        "title",
+        "category",
+        "streamUrl",
+        "status",
+        "viewerCount",
+        "giftsCoinsTotal",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "LiveChatMessage": {
+      "title": "LiveChatMessage",
+      "description": "Real-time chat or gift event inside a live stream.",
+      "type": "object",
+      "properties": {
+        "streamId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderUsername": { "type": "string" },
+        "text": { "type": "string" },
+        "kind": { "type": "string", "enum": ["chat", "gift", "moderation"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["streamId", "senderId", "senderUsername", "text", "kind", "createdAt"]
+    },
+    "LiveViewer": {
+      "title": "LiveViewer",
+      "description": "Active viewer presence in a live stream.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "streamId": { "type": "string" },
+        "joinedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "streamId", "joinedAt"]
+    },
+    "GiftTransaction": {
+      "title": "GiftTransaction",
+      "description": "Immutable virtual gift transaction ledger.",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderUsername": { "type": "string" },
+        "recipientId": { "type": "string" },
+        "recipientUsername": { "type": "string" },
+        "giftId": { "type": "string" },
+        "giftName": { "type": "string" },
+        "coinCost": { "type": "integer" },
+        "creatorNetCoins": { "type": "integer" },
+        "platformFeeCoins": { "type": "integer" },
+        "contextType": { "type": "string", "enum": ["clip", "live", "profile"] },
+        "contextId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "senderId",
+        "senderUsername",
+        "recipientId",
+        "recipientUsername",
+        "giftId",
+        "giftName",
+        "coinCost",
+        "creatorNetCoins",
+        "platformFeeCoins",
+        "contextType",
+        "contextId",
+        "createdAt"
+      ]
+    },
+    "CoinPurchase": {
+      "title": "CoinPurchase",
+      "description": "Coin package purchase record requiring server receipt verification.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "packageId": { "type": "string" },
+        "coinsAmount": { "type": "integer" },
+        "priceUsdCents": { "type": "integer" },
+        "provider": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending_verification", "completed", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "packageId", "coinsAmount", "priceUsdCents", "provider", "status", "createdAt", "updatedAt"]
+    },
+    "PayoutRequest": {
+      "title": "PayoutRequest",
+      "description": "Creator withdrawal request processed via authorized provider.",
+      "type": "object",
+      "properties": {
+        "creatorId": { "type": "string" },
+        "coinsAmount": { "type": "integer" },
+        "estimatedUsdCents": { "type": "integer" },
+        "provider": { "type": "string" },
+        "destinationHint": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending_review", "approved", "rejected"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["creatorId", "coinsAmount", "estimatedUsdCents", "provider", "destinationHint", "status", "createdAt", "updatedAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Private 1-on-1 messaging thread.",
+      "type": "object",
+      "properties": {
+        "participantIds": { "type": "array" },
+        "participantNames": { "type": "object" },
+        "lastMessage": { "type": "string" },
+        "lastSenderId": { "type": "string" },
+        "unreadUserIds": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["participantIds", "lastMessage", "lastSenderId", "unreadUserIds", "createdAt", "updatedAt"]
+    },
+    "DirectMessage": {
+      "title": "DirectMessage",
+      "description": "Message inside a private conversation with denormalized participantIds.",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string" },
+        "participantIds": { "type": "array" },
+        "senderId": { "type": "string" },
+        "text": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "readBy": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "participantIds", "senderId", "text", "readBy", "createdAt"]
+    },
+    "ModerationReport": {
+      "title": "ModerationReport",
+      "description": "User-submitted moderation report for clips, live streams, or accounts.",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "targetType": { "type": "string", "enum": ["clip", "live_stream", "user"] },
+        "targetId": { "type": "string" },
+        "reason": { "type": "string" },
+        "details": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "reviewed", "resolved", "dismissed"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "targetType", "targetId", "reason", "details", "status", "createdAt", "updatedAt"]
+    },
+    "RoleGrant": {
+      "title": "RoleGrant",
+      "description": "Admin or Moderator role marker document.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "grantedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "grantedBy", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/admins/{userId}": {
+      "schema": { "$ref": "#/entities/RoleGrant" },
+      "description": "Platform administrators registry."
+    },
+    "/moderators/{userId}": {
+      "schema": { "$ref": "#/entities/RoleGrant" },
+      "description": "Platform moderators registry."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Public creator profiles."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/PrivateAccount" },
+      "description": "Owner-isolated PII, wallet balance, and creator earnings."
+    },
+    "/users/{userId}/following/{targetUserId}": {
+      "schema": { "$ref": "#/entities/FollowEdge" },
+      "description": "Users followed by userId."
+    },
+    "/users/{userId}/favorites/{clipId}": {
+      "schema": { "$ref": "#/entities/FavoriteClip" },
+      "description": "Clips saved to favorites by userId."
+    },
+    "/users/{userId}/notifications/{notifId}": {
+      "schema": { "$ref": "#/entities/UserNotification" },
+      "description": "User activity notifications."
+    },
+    "/clips/{clipId}": {
+      "schema": { "$ref": "#/entities/Clip" },
+      "description": "Published 9:16 short video clips."
+    },
+    "/clips/{clipId}/likes/{userId}": {
+      "schema": { "$ref": "#/entities/ClipLike" },
+      "description": "Unique per-user likes on a clip."
+    },
+    "/clips/{clipId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/ClipComment" },
+      "description": "Comments on a clip."
+    },
+    "/live_streams/{streamId}": {
+      "schema": { "$ref": "#/entities/LiveStream" },
+      "description": "Live broadcast rooms."
+    },
+    "/live_streams/{streamId}/chat/{messageId}": {
+      "schema": { "$ref": "#/entities/LiveChatMessage" },
+      "description": "Live chat messages in a broadcast."
+    },
+    "/live_streams/{streamId}/viewers/{userId}": {
+      "schema": { "$ref": "#/entities/LiveViewer" },
+      "description": "Active viewer presence in a broadcast."
+    },
+    "/gift_transactions/{txId}": {
+      "schema": { "$ref": "#/entities/GiftTransaction" },
+      "description": "Immutable virtual gift transactions."
+    },
+    "/coin_purchases/{purchaseId}": {
+      "schema": { "$ref": "#/entities/CoinPurchase" },
+      "description": "Server-verified coin purchase records."
+    },
+    "/payout_requests/{payoutId}": {
+      "schema": { "$ref": "#/entities/PayoutRequest" },
+      "description": "Creator withdrawal requests."
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Private 1-on-1 conversations."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/DirectMessage" },
+      "description": "Direct messages inside a conversation."
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/ModerationReport" },
+      "description": "Moderation reports for content and users."
+    }
+  }
+}

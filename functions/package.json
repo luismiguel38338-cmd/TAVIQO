@@ -1,0 +1,13 @@
+{
+  "name": "lobo-clips-ai-functions",
+  "version": "1.0.0",
+  "description": "Cloud Functions for Lobo Clips AI server-side payment verification, gift ledger integrity, and creator payouts",
+  "main": "index.js",
+  "engines": {
+    "node": "20"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.1.0"
+  }
+}
